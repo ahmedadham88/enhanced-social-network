@@ -1,0 +1,10 @@
+For the Filter topics: it is saved instead of the interestslist
+
+for the friendship request filter: it is saved instead of the lastName
+
+For the Profession field: it is saved instead of the City field
+
+
+MyScrapBook --> Start.jspx
+
+It was replaced by EPC Connection Handler

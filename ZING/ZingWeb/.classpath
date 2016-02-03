@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v6.0">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/root/Desktop/ZING/jetty-6.1.9"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/activation-activation-1.1.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/classes12-8.1.7.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-beanutils-bean-collections-1.7.0.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-beanutils-core-1.7.0.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-configuration-1.3.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-digester-1.8.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-discovery-0.4.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-el-1.0.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-jxpath-1.2.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-lang-2.2.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/commons-logging-api-1.0.4.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/core-myfaces-api-1.2.3.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/javax.activation-activation-1.1.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/jsf-facelets-1.1.14.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/jstl-1.1.2.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/junit-3.8.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/log4j-1.2.13.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/mail-1.4.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/myfaces-impl-1.2.3.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/mysql-connector-java-5.1.6.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/ojdbc14-9.0.2.0.0.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/org.apache.myfaces.core-myfaces-api-1.2.3.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/org.apache.myfaces.trinidad-trinidad-api-1.2.8.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/standard-1.1.2.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/trinidad-impl-1.2.8.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/trinidad-trinidad-api-1.2.8.jar"/>
+	<classpathentry kind="lib" path="target/ZingWeb/WEB-INF/lib/xercesImpl-2.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api-2.5-6.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/org.restlet.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Resources"/>
+	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
+</classpath>

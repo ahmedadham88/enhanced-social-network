@@ -1,0 +1,15 @@
+[main] INFO  ca.concordia.encs.webservice.application.WebServiceApplication  - Starting QoSEnabler web service ...
+[main] INFO  de.fhg.fokus.diameter.DiameterPeer.DiameterPeer  - Bean style constructor called, don't forget to configure!
+[main] INFO  de.fhg.fokus.diameter.DiameterPeer.DiameterPeer  - FQDN: mdf-rx.openepc.test
+[main] INFO  de.fhg.fokus.diameter.DiameterPeer.DiameterPeer  - Realm: openepc.test
+[main] INFO  de.fhg.fokus.diameter.DiameterPeer.DiameterPeer  - Vendor_ID : 10415
+[main] INFO  de.fhg.fokus.diameter.DiameterPeer.DiameterPeer  - Product Name: CDiameterPeer
+[main] INFO  de.fhg.fokus.diameter.DiameterPeer.DiameterPeer  - AcceptUnknwonPeers: true
+[main] INFO  de.fhg.fokus.diameter.DiameterPeer.DiameterPeer  - DropUnknownOnDisconnect: true
+[main] DEBUG de.fhg.fokus.diameter.DiameterPeer.peer.PeerManager  - PeerManager: Peer pcrf.openepc.test:3868 added.
+[Thread-5] DEBUG de.fhg.fokus.diameter.DiameterPeer.peer.PeerManager  - Connecting to peer pcrf.openepc.test:3868 dynamic false dropping true
+Jan 18, 2014 3:03:04 PM org.restlet.engine.http.connector.HttpServerHelper start
+INFO: Starting the internal HTTP server on port 8180
+[Thread-8] DEBUG de.fhg.fokus.diameter.DiameterPeer.transport.Communicator  - Message length 296
+[main] INFO  ca.concordia.encs.webservice.application.WebServiceApplication  - QoSEnabler web service listens to 192.168.1.41:8180
+

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.apache.shindig.common.crypto.BlobCrypterTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.42 sec

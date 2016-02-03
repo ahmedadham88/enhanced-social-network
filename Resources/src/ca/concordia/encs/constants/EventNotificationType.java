@@ -1,0 +1,29 @@
+package ca.concordia.encs.constants;
+
+import java.io.Serializable;
+
+public enum EventNotificationType {
+
+	CHARGING_CORRELATION_EXCHANGE,
+
+	INDICATION_OF_LOSS_OF_BEARER,
+
+	INDICATION_OF_RECOVERY_OF_BEARER,
+
+	INDICATION_OF_RELEASE_OF_BEARER,
+
+	IP_CAN_CHANGE,
+
+	INDICATION_OF_OUT_OF_CREDIT,
+
+	INDICATION_OF_SUCCESSFUL_RESOURCES_ALLOCATION,
+
+	INDICATION_OF_FAILED_RESOURCES_ALLOCATION,
+
+	INDICATION_OF_LIMITED_PCC_DEPLOYMENT,
+
+	// This is not part of Specific Action
+
+	Session_Aborted
+
+}

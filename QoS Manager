@@ -1,0 +1,185 @@
+//////////////////////Differentiated QoS Algorithm///////////////////////
+		java.util.Date date= new java.util.Date();
+		System.out.println("The Start Time (2): "+new Timestamp(date.getTime()));
+		
+		
+		int total_bandwidth = 15000000;//100Mbps
+		int gold_bandwidth = 80000; //160Kbps
+		int silver_bandwidth = 80000;//80Kbps
+		int bronze_bandwidth = 80000;//40Kbps
+		int number_of_sessions = 0;
+		int session_gold = 0;
+		int session_silver = 0;
+		int session_bronze = 0;
+		int sessions_created_gold=0;
+		int sessions_terminated_gold=0;
+		int sessions_rejected_gold=0;
+		int sessions_created_silver=0;
+		int sessions_terminated_silver=0;
+		int sessions_rejected_silver=0;
+		int sessions_created_bronze=0;
+		int sessions_terminated_bronze=0;
+		int sessions_rejected_bronze=0;
+		//check if there is available bandwidth for this upcoming session
+		DatabaseConnector c = new DatabaseConnector();
+		c.databaseConnect();
+		int [] database_result = new int [4]; 
+		int sessionPriority = newSession.getServiceInfo().getPriority();
+		database_result = c.getSessionNumber();
+		number_of_sessions = database_result [0];
+		session_gold = database_result[1];
+		session_silver = database_result[2];
+		session_bronze = database_result[3];
+		//Get current sessions created, sessions terminated, sessions rejected
+		int []statistics = new int[3];
+		statistics = c.getStatistics(1);
+		sessions_created_gold = statistics[0];
+		sessions_terminated_gold=statistics[1];
+		sessions_rejected_gold = statistics[2];
+		statistics = c.getStatistics(2);
+		sessions_created_silver = statistics[0];
+		sessions_terminated_silver=statistics[1];
+		sessions_rejected_silver = statistics[2];
+		statistics = c.getStatistics(3);
+		sessions_created_bronze = statistics[0];
+		sessions_terminated_bronze=statistics[1];
+		sessions_rejected_bronze = statistics[2];
+		//Calculate available bandwidth
+		int available_bandwidth = total_bandwidth - ((session_gold*gold_bandwidth) + (session_silver*silver_bandwidth) + (session_bronze*bronze_bandwidth));
+		System.out.println("The available bandwidth: "+available_bandwidth);
+	if((number_of_sessions!=0)&&(available_bandwidth<80000)){
+		if((sessionPriority==1)&&(session_gold!=0)){//Gold
+			//If there is available bandwidth, admit the session
+			if(available_bandwidth>0){
+				System.out.println("Number of Sessions: "+number_of_sessions+" Gold ONLY: "+session_gold);
+				int ratio = session_gold/number_of_sessions;
+				if(ratio>0.9){
+					//Reject the session
+					SessionRequestResult result = new SessionRequestResult();
+					result.setStatus(SessionRequestStatus.REJECTED);
+					sessions_rejected_gold++;
+					c.updateStatistics(sessions_created_gold, sessions_terminated_gold, sessions_rejected_gold, 1);
+					c.databaseDisconnect();
+					return result;
+				}else{
+					//Terminate Silver or Bronze to accept the Gold
+					int second_ratio = session_bronze/number_of_sessions;
+					if(second_ratio>0.05){
+						//Delete 4 bronze sessions
+				/*		String [] sessions = new String [4];
+						sessions = c.getSessionIDs(4, 3);
+						sampleRemove(sessions[0]);
+						sampleRemove(sessions[1]);
+						sampleRemove(sessions[2]);
+						sampleRemove(sessions[3]);*/
+						number_of_sessions--;
+						session_bronze--;
+						sessions_terminated_bronze--;
+						c.updateSessionNumber(number_of_sessions,session_gold ,session_silver ,session_bronze);
+						c.updateStatistics(sessions_created_bronze, sessions_terminated_bronze, sessions_rejected_bronze, 3);
+						c.databaseDisconnect();
+					}else{
+						//Delete 2 silver sessions
+						String [] sessions = new String [2];
+					/*	sessions = c.getSessionIDs(2, 2);
+						sampleRemove(sessions[0]);
+						sampleRemove(sessions[1]);*/
+						number_of_sessions--;
+						session_silver--;
+						c.updateSessionNumber(number_of_sessions,session_gold ,session_silver ,session_bronze);
+						sessions_terminated_silver--;
+						c.updateStatistics(sessions_created_silver, sessions_terminated_silver, sessions_rejected_silver, 2);
+						c.databaseDisconnect();
+					}
+				}
+			}
+		}else{
+			if ((sessionPriority==2)&&(session_silver!=0)){//Silver
+				//If there is available bandwidth, admit the session
+				if(available_bandwidth>0){
+					int ratio = session_silver/number_of_sessions;
+					if(ratio>0.2){
+						//Reject the session
+						SessionRequestResult result = new SessionRequestResult();
+						result.setStatus(SessionRequestStatus.REJECTED);
+						sessions_rejected_silver++;
+						c.updateStatistics(sessions_created_silver, sessions_terminated_silver, sessions_rejected_silver, 2);
+						c.databaseDisconnect();
+						return result;
+					}else{
+						//Terminate Gold or Bronze to accept the Silver
+						int second_ratio = session_bronze/number_of_sessions;
+						if(second_ratio>0.05){
+							//Delete 2 bronze sessions
+							String [] sessions = new String [2];
+						/*	sessions = c.getSessionIDs(2, 3);
+							sampleRemove(sessions[0]);
+							sampleRemove(sessions[1]);*/
+							number_of_sessions--;
+							session_bronze--;
+							c.updateSessionNumber(number_of_sessions,session_gold ,session_silver ,session_bronze);
+							sessions_terminated_bronze=sessions_terminated_bronze--;
+							c.updateStatistics(sessions_created_bronze, sessions_terminated_bronze, sessions_rejected_bronze, 3);
+							c.databaseDisconnect();
+						}else{
+							//Delete 1 gold session
+							String [] sessions = new String [1];
+						/*	sessions = c.getSessionIDs(1, 1);
+							sampleRemove(sessions[0]);*/
+							number_of_sessions--;
+							session_gold--;
+							c.updateSessionNumber(number_of_sessions,session_gold ,session_silver ,session_bronze);
+							sessions_terminated_gold--;
+							c.updateStatistics(sessions_created_gold, sessions_terminated_gold, sessions_rejected_gold, 1);
+							c.databaseDisconnect();
+						}
+					}
+				}
+			}
+			else{
+				if((sessionPriority==3)&&(session_bronze!=0)){//Bronze
+				//If there is available bandwidth, admit the session
+				if(available_bandwidth>0){
+					int ratio = session_bronze/number_of_sessions;
+					if(ratio>0.05){
+						//Reject the session
+						SessionRequestResult result = new SessionRequestResult();
+						result.setStatus(SessionRequestStatus.REJECTED);
+						sessions_rejected_bronze++;
+						c.updateStatistics(sessions_created_bronze, sessions_terminated_bronze, sessions_rejected_bronze, 3);
+						c.databaseDisconnect();
+						return result;
+					}else{
+						//Terminate Silver or Gold to accept the Bronze
+						int second_ratio = session_silver/number_of_sessions;
+						if(second_ratio>0.2){
+							//Delete 1 silver session
+							String [] sessions = new String [1];
+						/*	sessions = c.getSessionIDs(1, 2);
+							sampleRemove(sessions[0]);*/
+							number_of_sessions--;
+							session_silver--;
+							c.updateSessionNumber(number_of_sessions,session_gold ,session_silver ,session_bronze);
+							sessions_terminated_silver--;
+							c.updateStatistics(sessions_created_silver, sessions_terminated_silver, sessions_rejected_silver, 2);
+							c.databaseDisconnect();
+						}else{if(session_gold/number_of_sessions>0.9){
+							//Delete 1 Gold session
+							String [] sessions = new String [1];
+						/*	sessions = c.getSessionIDs(1, 1);
+							sampleRemove(sessions[0]);*/
+							number_of_sessions--;
+							session_gold--;
+							c.updateSessionNumber(number_of_sessions,session_gold ,session_silver ,session_bronze);
+							sessions_terminated_gold--;
+							c.updateStatistics(sessions_created_gold, sessions_terminated_gold, sessions_rejected_gold, 1);
+							c.databaseDisconnect();
+						}
+						}
+					}
+				}
+			}
+			}
+		}
+	}
+		////////////////////////////////////////////////////

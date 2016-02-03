@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svnroot/repos/openimscore/!svn/ver/361/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/transaction
+END
+TransactionWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svnroot/repos/openimscore/!svn/ver/361/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/transaction/TransactionWorker.java
+END
+DiameterTransaction.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/transaction/DiameterTransaction.java
+END
+TransactionListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/transaction/TransactionListener.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/transaction/package.html
+END

@@ -1,0 +1,13 @@
+Get the projects ZingWeb and ZingWebConfig. Do a svn checkout for http://zing.googlecode.com/svn/trunk/zing/ZingWeb/ and http://zing.googlecode.com/svn/trunk/zing/ZingWebConfig/
+    
+Change the web.xml for ZingWeb project located at ${ZingWeb}/WebContent/WEB-INF and configure the "GadgetServerURL" parameter according to "ip-of-jetty-server" and "jetty-port".
+
+Execute the command mvn package to generate build for ZingWeb project. Maven build file "pom.xml" can be located within "ZingWeb" project. This will generate "target" directory within the project, which contains "ZingWeb" directory.
+
+Browse to "lib" directory within "WEB-INF" of "ZingWeb" exploded war, then cut "el-api-6.0.18.jar" and paste it to ${Jetty_Home}/lib/ext directory.
+
+Place the "ZingWeb" exploded war within ${Jetty_Home}/webapps directory.
+
+Browse to ${ZingWebConfig}/configurations/persistence/persistence.xml. Configure this file to provide database URL and credentials.
+
+Set COMPOSITE_CONFIG="${ZingWebConfig}/configurations/configurationControlFile.xml" as environment variable. 

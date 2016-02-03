@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	$Id: pcrf.xml 2302 2010-08-25 12:59:28Z dvi $
+ 
+ 	Copyright (C) 2009 FhG Fokus
+ 	
+  This file is part of the Wharf project.
+
+ \file
+  
+  Wharf configuration file for a Policy and Charging Rules Function (PCRF) 
+  
+ -->
+<Wharf>
+	<Core>
+		<Debug log="3" memory="6" memory_status="1"/>
+			<!--  
+				The debug level should be set between -3 and 5, with 5 being the most verbose.
+				Only the logs with a level <= with the one below will be printed.
+				L_ALERT -3
+				L_CRIT  -2
+				L_ERR   -1
+				L_WARN   1
+				L_NOTICE 2
+				L_INFO   3
+				L_DB     4
+				L_DBG    5
+				L_MEM    6
+				
+				The memory is the setting for all the memory operations.
+				
+				The memory_status controls what is printed on process exit and is either 0, 1 or 2:
+				 - 0 - don't show any memory status
+				 - 1 - show the summarized memory status
+				 - 2 - show the fragment maps and the summarized memory status
+			 -->		
+		<SharedMemory kbytes="16384" />
+		<ProcessMemory kbytes="4096" />
+		<WorkerPool count="8" queue_size="24" /> 
+	</Core>
+
+	<Module binaryFile="modules/console/console.so" >
+		<![CDATA[
+			<WharfConsole>
+				<Prompt text=" PCRF >"/>
+				<Acceptor type="tcp" port="10000" bind="127.0.0.1" />
+				<Acceptor type="tcp" port="10000" bind="192.168.1.30" />
+				<Acceptor type="tcp" port="10000" bind="192.168.254.30" />
+			</WharfConsole>
+		]]>
+	</Module>
+	<Module binaryFile="modules/cdp/cdp.so">
+  		<![CDATA[ 
+<!-- 
+				First the general settings of the Diameter module are needed and then 
+				the configuration of the Diameter peers along with the application ids 
+				that are enabled on the communication with the corresponding Diameter peer 
+
+				FQDN - The host to be used as Origin-Host
+				Realm - The realm to be used as Origin-Realm
+				Vendor_Id - The vendor ID to be used in AVPs that require it
+				Product_Name - The name of the module
+				AcceptUnknownPeers - How many unknown/not set peers it should accept
+				DropUnknownOnDisconnect - Enable the release of the Diameter peer disconnection of the unknown peers 
+				Workers - How many working threads are to be used, 
+					the CDP has a task pool and every worker can add or process tasks
+				QueueLength - Set the masimum length of the task queue
+				TransactionTimeout -  Set the maximum duration between sending a request and receiving a reply
+				SessionsHashSize - the module is computing a hash based on the session ID and the hash size, 
+					set the maximum hash size that the module is using for indexing the sessions
+			-->
+			<DiameterPeer 
+			FQDN="pcrf.openepc.test"
+			Realm="openepc.test"
+			Vendor_Id="10415"
+			Product_Name="CDiameterPeer"
+			AcceptUnknownPeers="1"
+			DropUnknownOnDisconnect="1"
+			Tc="30"
+			Workers="4"
+			QueueLength="32"
+			TransactionTimeout="5"
+			SessionsHashSize="128">
+
+			<Acceptor port="3868" bind="192.168.254.30"/>	
+
+			<!-- Sp -->
+			<Peer FQDN="hss.openepc.test" Realm="openepc.test" port="3868" />
+			<!-- Rx -->
+			<Peer FQDN="mdf-rx.openepc.test" Realm="openepc.test" port="3868" />
+			<Peer FQDN="http-proxy-rx.openepc.test" Realm="openepc.test" port="3868" />
+			<Peer FQDN="pcscf-rx.openepc.test" Realm="openepc.test" port="3871" />
+			<!-- Gx -->
+			<Peer FQDN="pcef.openepc.test" Realm="openepc.test" port="3868" />
+			<!-- Gxx -->
+			<Peer FQDN="bberf-sgw.openepc.test" Realm="openepc.test" port="3868" />
+			<Peer FQDN="bberf-epdg.openepc.test" Realm="openepc.test" port="3868" />
+
+			<!-- Accepted application ids and the associated vendorid, if the case -->
+			<Auth id="16777280" vendor="10415"/>
+			<Auth id="16777236" vendor="10415"/> <!-- 3GPP Rx -->
+			<Auth id="16777236" />
+			<Auth id="16777266" vendor="10415"/> <!-- 3GPP Gxx -->
+			<Auth id="16777266"/>
+			<Auth id="16777238" vendor="10415"/> <!-- 3GPP Gx -->
+			<Auth id="16777238"/>
+
+			<!-- Routing settings -->
+			<Realm name="openepc.test">
+				<Route FQDN="hss.openepc.test" metric="10"/>
+			</Realm>	
+
+			<DefaultRoute FQDN="hss.openepc.test" metric="10"/>			
+			
+		</DiameterPeer>
+		]]> 
+	</Module>
+
+	<!-- Loading the cdp_avp module -->
+	<Module binaryFile="modules/cdp_avp/cdp_avp.so" /> 
+
+	<!-- Loading the mysql module -->
+	<Module binaryFile="modules/mysql/mysql.so" /> 
+
+	<!-- Loading the PCRF module 
+              Parameters:
+		fqdn and realm are used internally when generating the name of the PCC rules
+                the mysql database connection settings: hostname, username, password of the user and the name of the database
+		the Rx, Gx, Gxx and Sp interfaces can be enabled/disabled: the value 1 is for enabled and 0 for disabled
+		-->	
+	<Module binaryFile="modules/PCRF/PCRF.so">
+	  <![CDATA[ 
+		<WharfPCRF>
+			<Host fqdn="pcrf.openepc.test" realm="openepc.test"/>
+			<Database hostname="127.0.0.1" username="pcrf" password="pcrf" database="pcrf_db"/>
+			<Rx enabled="1"/>
+			<Gx  enabled="1"/>
+			<Gxx enabled="1"/>
+			<Sp  enabled="1"/>
+		</WharfPCRF>	
+  	]]> 
+	</Module>
+
+	<!-- Loading the Client_Sp module -->
+	<Module binaryFile="modules/Client_Sp/Client_Sp.so" /> 
+
+	<!-- Loading the submodule for the Rx interface-->
+	<Module binaryFile="modules/PCRF_Rx/PCRF_Rx.so" /> 
+
+	<!-- Loading the submodule for the Gx interface-->
+	<Module binaryFile="modules/PCRF_Gx/PCRF_Gx.so" /> 
+
+	<!-- Loading the submodule for the Gxx interface-->
+	<Module binaryFile="modules/PCRF_Gxx/PCRF_Gxx.so" />
+</Wharf>

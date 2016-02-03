@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DiameterPeer 
+				FQDN="mdf-rx.openepc.test"
+				Realm="openepc.test"
+				Vendor_Id="10415"
+				Product_Name="CDiameterPeer"
+				AcceptUnknownPeers="1"
+				DropUnknownOnDisconnect="1"
+				Tc="30"
+				Workers="4"
+				QueueLength="32"
+				TransactionTimeout="5"
+				SessionsHashSize="128"
+			>				
+				<Acceptor port="3868" bind="192.168.254.41"/>				
+				<Auth id="16777236" vendor="10415"/> <!-- 3GPP Rx -->
+				<Auth id="16777236" /> <!--  Rx  Because of the definition of the Rx interface, the use of the Vendor-Specific-Application-ID is not enough-->
+				<Peer FQDN="pcrf.openepc.test" Realm="openepc.test" port="3868" />
+				<Realm name="openepc.test">
+					<Route FQDN="pcrf.openepc.test" metric="10"/>
+				</Realm>
+				<DefaultRoute FQDN="pcrf.openepc.test" metric="10"/>
+			</DiameterPeer>

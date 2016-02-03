@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<testsuite errors="0" failures="0" name="OpenSocialJsTests" tests="4" time="0.01">
+    <testcase name="JsonActivityTest.testJsonActivityConstructor" time="0.01"/>
+    <testcase name="JsonActivityTest.testConstructArrayObject" time="0"/>
+    <testcase name="JsonActivityTest.testJsonMediaItemConstructor" time="0"/>
+    <testcase name="ActivityTest.testSetField" time="0"/>
+</testsuite>

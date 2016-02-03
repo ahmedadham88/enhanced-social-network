@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svnroot/repos/openimscore/!svn/ver/361/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data
+END
+DiameterDPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/DiameterDPA.java
+END
+DiameterMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnroot/repos/openimscore/!svn/ver/167/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/DiameterMessage.java
+END
+DiameterDPR.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/DiameterDPR.java
+END
+DiameterMessageDecodeException.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/DiameterMessageDecodeException.java
+END
+DiameterCEA.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/DiameterCEA.java
+END
+DiameterCER.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/DiameterCER.java
+END
+AVP.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svnroot/repos/openimscore/!svn/ver/361/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/AVP.java
+END
+DiameterDWA.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/DiameterDWA.java
+END
+DiameterDWR.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/DiameterDWR.java
+END
+AVPDecodeException.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/AVPDecodeException.java
+END
+Codec.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/Codec.java
+END
+CodecTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/CodecTest.java
+END
+DiameterTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/DiameterTask.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svnroot/repos/openimscore/!svn/ver/2/JavaDiameterPeer/trunk/src/de/fhg/fokus/diameter/DiameterPeer/data/package.html
+END

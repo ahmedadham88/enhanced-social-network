@@ -1,0 +1,5 @@
+C:\zing\jetty-6.1.9>
+java -DCOMPOSITE_CONFIG="c:/zing/ZingWebConfig/configurations/configurationControlFile.xml" -jar start.jar etc/jetty.xml
+
+
+java -DCOMPOSITE_CONFIG="/root/Desktop/ZING/ZingWebConfig/configurations/configurationControlFile.xml" -jar start.jar etc/jetty.xml
